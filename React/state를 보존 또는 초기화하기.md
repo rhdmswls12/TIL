@@ -49,15 +49,17 @@ function Counter() {
 
 동일한 `Counter`가 다른 두 군데에서 렌더링되고 있다.
 
-![image.png](attachment:5683a311-5154-47dd-a49c-ea8a0af364e0:image.png)
+![Image](https://github.com/user-attachments/assets/f7d1d743-d901-437c-a530-8b43b57570a1)
 
 **이 둘은 트리에서 각각 자기 고유의 위치에 렌더링되어 있으므로 분리되어 있는 카운터다.**
 
 리액트에서 화면의 각 컴포넌트는 완전히 분리된 state를 가진다. 두 `Counter` 컴포넌트를 나란히 렌더링하면 각각 자신만의 독립된 `score`과 `hover` state를 가지게 된다.
 
-![image.png](attachment:3292dd3e-6c05-481f-ae4e-ac537834baa5:image.png)
+![Image](https://github.com/user-attachments/assets/fe2ecdc4-2351-4085-b7b1-bc96d20f5ab4)
 
 특정 카운터가 갱신되면 해당 컴포넌트의 상태만 갱신된다.
+
+<br />
 
 리액트는 트리의 동일한 컴포넌트를 동일한 위치에 렌더링하는 동안 상태를 유지한다.
 
@@ -87,11 +89,11 @@ export default function App() {
 
 두 카운터를 모두 증가시키고 ‘Render the second counter’ 체크 박스의 체크를 해제하여 두 번째 컴포넌트를 제거한다. 그리고 다시 체크박스를 눌러 두 번째 컴포넌트를 추가한다. 그럼 두 번째 컴포넌트의 `count`가 다시 0으로 초기화되어 있는 것을 확인할 수 있다.
 
-![컴포넌트 삭제](attachment:0d459ae7-6476-4e0f-a7c5-720e4bf99cbf:image.png)
+![Image](https://github.com/user-attachments/assets/4b64b03f-8379-4896-b03a-41b0045c9f61)
 
 컴포넌트 삭제
 
-![컴포넌트 추가](attachment:6a710af5-57fe-42d6-adc4-b4bf0be6d672:image.png)
+![Image](https://github.com/user-attachments/assets/9465935d-836e-46b6-bd99-eb79cb037ce3)
 
 컴포넌트 추가
 
@@ -101,9 +103,7 @@ export default function App() {
 
 <br />
 
-### 같은 자리의 같은 컴포넌트는 state를 보존한다
-
----
+## 같은 자리의 같은 컴포넌트는 state를 보존한다
 
 ```jsx
 import { useState } from "react";
@@ -151,14 +151,20 @@ function Counter({ isFancy }) {
   );
 }
 ```
-
-![image.png](attachment:7e465a49-69aa-4410-829d-2c3fec2cc601:image.png)
-
-![image.png](attachment:7ac85c27-ed47-4c6e-b649-913201132b22:image.png)
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/4f71d317-7a95-4ea3-b6b3-0e209eb78f29" />
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/dff69fe4-7b0c-47a0-9f76-15659578d950" />
+    </td>
+  </tr>
+</table>
 
 체크 박스를 선택하거나 해제할 때 카운터 state는 초기화되지 않는다. `isFancy`가 `true`이든 `false`이든 `Counter`는 같은 자리에 있기 때문이다. 즉 루트인 `App` 컴포넌트가 반환하는 `div`의 첫 번째 자식으로 존재한다.
 
-![image.png](attachment:7f75139e-4723-40cf-a3d1-e3ce5531f49c:image.png)
+![Image](https://github.com/user-attachments/assets/5e1d792f-122c-4d4a-a274-d7dd9f22a781)
 
 카운터는 같은 자리에 있으므로 `App`의 상태 갱신은 카운터를 초기화시키지 않는다.
 
@@ -252,11 +258,11 @@ function Counter() {
 
 여기서는 같은 자리이지만 다른 컴포넌트 타입으로 바꾸고 있다. 처음에는 `<div>`가 `Counter`를 갖고 있지만 `p`로 바꾸면 리액트는 UI 트리에서 `Counter`와 그 state를 제거한다.
 
-![image.png](attachment:f49c3b35-e27a-4b78-ae56-3c9e4d296b23:image.png)
+![Image](https://github.com/user-attachments/assets/bc358e30-b9c9-46ba-abe4-74c23b1ad6e4)
 
 `Counter`가 `p`로 바뀌면 `Counter`는 삭제되고 `p`가 추가된다.
 
-![image.png](attachment:7412feb3-d322-4e46-a27c-c61c82fcf773:image.png)
+![Image](https://github.com/user-attachments/assets/cbfd8d9f-0ed6-4212-a832-bc091c8586e2)
 
 다시 되돌리면 `p`는 삭제되고 `Counter`가 추가된다.
 
@@ -295,11 +301,11 @@ export default function App() {
 
 위 코드에서 체크 박스를 선택할 때 카운터 state가 초기화된다. `div`의 첫 번째 자식으로 `Counter`를 렌더링하는 것에서 `section`의 첫 번째 자식으로 바뀐다. 자식 `div`가 DOM에서 제거될 때 해당 `div`의 전체 하위 트리 역시 제거된다.
 
-![image.png](attachment:bea58a76-e4ac-4307-9da6-955583352b9f:image.png)
+![Image](https://github.com/user-attachments/assets/0dae189c-bd71-4c0a-9b8f-4b578851e988)
 
 `section`이 `div`로 바뀌면 `section`은 삭제되고 새로운 `div`가 추가된다.
 
-![image.png](attachment:db2a14f1-e649-48d3-9788-4aa45211a3ae:image.png)
+![Image](https://github.com/user-attachments/assets/6ef54e03-8004-47e8-8015-a6ad742ff0f8)
 
 다시 되돌리면 `div`는 삭제되고 새로운 `section`이 추가된다.
 
@@ -336,7 +342,7 @@ export default function MyComponent() {
 
 위 코드는 `MyComponent` 안에서 `MyTextField` 컴포넌트 함수를 정의하고 있다.
 
-![image.png](attachment:7385ba24-8424-4c28-918e-a23d48c18ab0:image.png)
+![Image](https://github.com/user-attachments/assets/88e1cf31-72da-4992-899d-103457e2ddd4)
 
 버튼을 누를 때마다 `input`에 입력했던 state가 사라진다. 이는 `MyComponent`를 렌더링할 때마다 다른 `MyTextField` 함수가 만들어지기 때문이다.
 
@@ -471,6 +477,8 @@ export default function Scoreboard() {
   > - `Counter`는 항상 `<div>` 안에서 첫 번째 자식 컴포넌트로 등장한다.
   > - JSX 구조상 동일한 위치에서 렌더링된다.
   > - 리액트는 두 경우의 `Counter`를 같은 컴포넌트로 추적하고 상태를 유지한다.
+  > 
+  > <br />
   >
   > **다른 컴포넌트로 인식하는 예시**
   >
