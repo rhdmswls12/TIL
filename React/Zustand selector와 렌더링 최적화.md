@@ -41,20 +41,20 @@ const { username } = useUseStore();
 
 3. **useShallow 사용 (v4.4.0+)**
 
-```tsx
-import { useShallow } from "zustand/shallow";
-
-const { username, email } = useUserStore(
-  useShallow((state) => ({
-    username: state.username,
-    email: state.email,
-  }))
-);
-```
-
-- `shallow`와 동일한 기능이지만 더 직관적인 API
-- TypeScript 타입 추론이 더 정확하다.
-- 현재 권장되는 방식
+   ```tsx
+   import { useShallow } from "zustand/shallow";
+   
+   const { username, email } = useUserStore(
+     useShallow((state) => ({
+       username: state.username,
+       email: state.email,
+     }))
+   );
+   ```
+   
+   - `shallow`와 동일한 기능이지만 더 직관적인 API
+   - TypeScript 타입 추론이 더 정확하다.
+   - 현재 권장되는 방식
 
 <br />
 
