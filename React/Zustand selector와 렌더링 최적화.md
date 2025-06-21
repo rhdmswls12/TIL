@@ -120,8 +120,8 @@ const { user } = useUserStore(
 );
 ```
 
-- 이 경우 `user.name`, `user.email` 중 어떤 값이 바뀌었는지 알 수 없고, `user` 객체 전체가 매번 새로 만들어지므로 shallow가 의미 없다.
-- 객체 내부가 같더라고 참조가 다르면 렌더링이 발생한다.
+- 이 경우 `user.name`, `user.email` 중 어떤 값이 바뀌었는지 알 수 없고, `user` 객체 전체가 매번 새로 만들어지므로 `shallow`가 의미 없다.
+- 객체 내부가 같더라도 참조가 다르면 렌더링이 발생한다.
 
 <br />
 
