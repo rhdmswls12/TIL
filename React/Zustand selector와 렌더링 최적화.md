@@ -39,6 +39,23 @@ const { username } = useUseStore();
    - `username` 또는 `email` 중 하나라도 바뀌면 렌더링된다.
    - `shallow`는 객체 속성들을 얕은 비교하여 렌더링 여부를 판단한다.
 
+3. **useShallow 사용 (v4.4.0+)**
+
+```tsx
+import { useShallow } from "zustand/shallow";
+
+const { username, email } = useUserStore(
+  useShallow((state) => ({
+    username: state.username,
+    email: state.email,
+  }))
+);
+```
+
+- `shallow`와 동일한 기능이지만 더 직관적인 API
+- TypeScript 타입 추론이 더 정확하다.
+- 현재 권장되는 방식
+
 <br />
 
 ## shallow 개념과 주의사항
@@ -138,6 +155,62 @@ const { name, email } = useUserStore(
 ```
 
 - 필드 단위로 꺼내고 묶어서 `shallow` 비교하면 값이 변했을 때만 리렌더링된다.
+
+<br />
+
+## setter 함수 최적화
+
+```tsx
+// setter 함수들은 참조가 안정적이므로 shallow 불필요
+const setUsername = useUserStore((state) => state.setUsername);
+const setEmail = useUserStore((state) => state.setEmail);
+
+// 상태값만 useShallow로 최적화
+const { username, email } = useUserStore(
+  useShallow((state) => ({
+    username: state.username,
+    email: state.email,
+  }))
+);
+```
+
+<br />
+
+## selector가 필요한 경우
+
+```tsx
+// 같은 화면에 여러 컴포넌트가 있을 때
+function Dashboard() {
+  return (
+    <div>
+      <UserProfile /> {/* nickname, profileImage만 필요 */}
+      <LocationInfo /> {/* selectedGu, selectedDong만 필요 */}
+      <CategoryList /> {/* categories만 필요 */}
+    </div>
+  );
+}
+```
+
+- 한 컴포넌트에서 전체 상태 중 일부만 사용할 때
+- 여러 컴포넌트가 동시에 렌더링되어 있을 때
+- 상태가 자주 변하는 복잡한 애플리케이션일 때
+
+<br />
+
+## selector가 불필요한 경우
+
+```tsx
+// 각각 별도 페이지인 경우
+function NicknamePage() {
+  // 이 페이지에서는 nickname 관련 상태만 사용
+  const { nickname, setNickname } = useUserStore();
+  // selector 없이 써도 성능상 문제 없음
+}
+```
+
+- 각 페이지가 분리되어 있어서 자연스럽게 격리된 경우
+- 컴포넌트가 해당 상태만 주로 사용하는 경우
+- 간단한 애플리케이션이거나 성능 이슈가 없는 경우
 
 <br />
 
